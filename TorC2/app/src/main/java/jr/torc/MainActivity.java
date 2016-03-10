@@ -1,9 +1,12 @@
 package jr.torc;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
+        mug.addView(new Panel(this), 0);      //adding the panel view to the linear layout flPanel
     }
 
     @Override

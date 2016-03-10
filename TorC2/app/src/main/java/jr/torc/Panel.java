@@ -15,6 +15,8 @@ public class Panel extends View {
     @Override
     protected void onDraw(Canvas canvas)
     {
+        float f = 300;
+
         canvas.drawColor(Color.WHITE);
 
         Paint paint = new Paint();      //setting up a new paint
@@ -27,5 +29,8 @@ public class Panel extends View {
 
         paint.setColor(Color.WHITE);
         canvas.drawRect(750, 250, 825, 625, paint);     //drawing the inset to the mug handle
+
+        paint.setColor(Color.WHITE);
+        canvas.drawRect(150, 150, 725, f, paint);       //variable height adjust based on float f
     }
 }
