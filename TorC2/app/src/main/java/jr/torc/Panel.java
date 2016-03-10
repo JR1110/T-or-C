@@ -17,8 +17,6 @@ public class Panel extends View {
     {
         float f = 300;
 
-        canvas.drawColor(Color.WHITE);
-
         Paint paint = new Paint();      //setting up a new paint
 
         paint.setColor(Color.BLACK);        //setting the default colour to black
@@ -27,7 +25,7 @@ public class Panel extends View {
         paint.setColor(Color.BLACK);
         canvas.drawRect(750, 175, 875, 700, paint);     //drawing mug handle
 
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.rgb(66,33,00));
         canvas.drawRect(750, 250, 825, 625, paint);     //drawing the inset to the mug handle
 
         paint.setColor(Color.WHITE);
