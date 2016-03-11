@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 
@@ -24,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 
         final Button btnTea = (Button) findViewById(R.id.btnTea);             //variable for the tea button
         final Button btnCoffee = (Button) findViewById(R.id.btnCoffee);       //variable used for the coffee button
-        Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
+        final Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
 
         btnTea.setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
             @Override
@@ -39,6 +40,16 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v){
                 btnCoffee.setTextColor(Color.RED);       //changes the buttons colour
                 btnTea.setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener(){      //opens up a new on click listener for the next person button
+            @Override
+            public void onClick(View v){
+                btnTea.setTextColor(Color.BLACK);       //resets tea to black
+                btnCoffee.setTextColor(Color.BLACK);        //resets coffee button to black
+                EditText name = (EditText) findViewById(R.id.nameInput);     //finds the user's textbox
+                name.setText("");       //resets the textbox to blank
             }
         });
     }
