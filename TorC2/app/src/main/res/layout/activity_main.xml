@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Tea"
-            android:id="@+id/tea"
+            android:id="@+id/btnTea"
             android:layout_weight="0.47"
             android:gravity="left"/>
         </TableRow>
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Coffee"
-            android:id="@+id/coffee"
+            android:id="@+id/btnCoffee"
             android:layout_weight="0.47"
             android:gravity="right"/>
         </TableRow>
@@ -62,15 +62,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Person >>"
-        android:id="@+id/finishOrder"
+        android:id="@+id/btnNextOrder"
         android:gravity="right"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="right|bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tableLayout"
-        android:layout_alignEnd="@+id/tableLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignEnd="@+id/tableLayout" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,7 +77,7 @@
         android:layout_below="@+id/tableLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/finishOrder"
+        android:layout_above="@+id/btnNextOrder"
         android:id="@+id/flPanel"
         android:orientation="horizontal">
     </LinearLayout>
