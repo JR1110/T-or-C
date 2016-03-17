@@ -16,7 +16,7 @@ public class Panel extends View {
     @Override
     protected void onDraw(Canvas canvas)
     {
-        float f = 300;
+        float f = 300;      //velue used to store amount of milk, dynamically changed by user
 
         /*@Override
         public boolean onTouchEvent(MotionEvent e){

@@ -4,14 +4,17 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,14 +30,47 @@ public class MainActivity extends ActionBarActivity {
 
         final order o = new order();      //setting up a new order
 
-        final AtomicReference<Button> btnTea = new AtomicReference<>((Button) findViewById(R.id.btnTea));             //variable for the tea button
+        final Button btnTea = (Button) findViewById(R.id.btnTea);             //variable for the tea button
         final Button btnCoffee = (Button) findViewById(R.id.btnCoffee);       //variable used for the coffee button
         final Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
 
-        btnTea.get().setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
+        final Button btnMinus = (Button) findViewById(R.id.btnMinus);       //variable used for the minus button
+        final Button btnPlus = (Button) findViewById(R.id.btnPlus);         //variable used for the plus button
+
+        final TextView numSugar = (TextView) findViewById(R.id.numSugar);       //variable used for the sugar number
+        numSugar.setText("0");          //sets the level to be 0 from the start
+
+        btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnTea.get().setTextColor(Color.RED);      //sets the font colour of the button to red
+                int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textox to a number
+                if (sugar > 0) {        //if there is some sugar to be taken away
+                    sugar = sugar - 1;      //takes away one level of sugar
+                    numSugar.setText(Integer.toString(sugar));        //shows that to the user in the textbox
+                }
+            }
+        });
+
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                try {
+                    int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
+                    if (sugar >= 0) {        //if there is 0 or more sugar (can't be a negative number)
+                        sugar++;      //adds one to the sugar level
+                        numSugar.setText(Integer.toString(sugar));        //shows the user that in the textbox
+                    }
+                }
+                catch (Exception e){
+                    Log.d("Error : ", e.getMessage());
+                }
+            }
+        });
+
+        btnTea.setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
+            @Override
+            public void onClick(View v) {
+                btnTea.setTextColor(Color.RED);      //sets the font colour of the button to red
                 btnCoffee.setTextColor(Color.BLACK); //Sets the coffee button's colour back to normal
                 btnCoffee.setSelected(false);           //sets the coffee selected to false
             }
@@ -45,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v){
                 btnCoffee.setTextColor(Color.RED);       //changes the buttons colour
                 btnCoffee.setSelected(true);          //makes the button selected
-                btnTea.get().setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
+                btnTea.setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
             }
         });
 
@@ -59,21 +95,24 @@ public class MainActivity extends ActionBarActivity {
                     o.setName(name.toString());
                     if (btnCoffee.isSelected()) {
                         o.setDrink("Coffee");
-                    } else {
+                    } else if (btnTea.isSelected()){
                         o.setDrink("Tea");
                     }
+                    int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
+                    o.setSugar(sugar);
                 }
                 catch (Exception ex){
-
+                    Log.d("Creating class error :", ex.getMessage());
                 }
 
                 reset();        //runs the reset subroutine
             }
 
             public void reset(){
-                btnTea.get().setTextColor(Color.BLACK);       //resets tea to black
+                btnTea.setTextColor(Color.BLACK);       //resets tea to black
                 btnCoffee.setTextColor(Color.BLACK);        //resets coffee button to black
                 name.setText("");       //resets the textbox to blank
+                numSugar.setText("0");      //resets the sugar level to 0
             }
         });
 
