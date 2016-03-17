@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.MotionEvent;
 
 public class Panel extends View {
     public Panel(Context context) { super(context); }
@@ -17,6 +18,12 @@ public class Panel extends View {
     {
         float f = 300;
 
+        /*@Override
+        public boolean onTouchEvent(MotionEvent e){
+            float y = e.getY();
+            f = y;
+        }
+*/
         Paint paint = new Paint();      //setting up a new paint
 
         paint.setColor(Color.BLACK);        //setting the default colour to black
