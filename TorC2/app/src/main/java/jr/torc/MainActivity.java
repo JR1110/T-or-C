@@ -54,17 +54,13 @@ public class MainActivity extends ActionBarActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                try {
-                    int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
-                    if (sugar >= 0) {        //if there is 0 or more sugar (can't be a negative number)
-                        sugar++;      //adds one to the sugar level
-                        numSugar.setText(Integer.toString(sugar));        //shows the user that in the textbox
-                    }
-                }
-                catch (Exception e){
-                    Log.d("Error : ", e.getMessage());
+                int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
+                if (sugar >= 0 && sugar < 9) {        //if there is 0 or more sugar (can't be a negative number)
+                    sugar++;      //adds one to the sugar level
+                    numSugar.setText(Integer.toString(sugar));        //shows the user that in the textbox
                 }
             }
+
         });
 
         btnTea.setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
@@ -99,7 +95,8 @@ public class MainActivity extends ActionBarActivity {
                         o.setDrink("Tea");
                     }
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
-                    o.setSugar(sugar);
+                    o.setSugar(sugar);      //sets the sugar level as such
+                    o.setMilkLevel(300);    //TODO, currently hardcoded
                 }
                 catch (Exception ex){
                     Log.d("Creating class error :", ex.getMessage());

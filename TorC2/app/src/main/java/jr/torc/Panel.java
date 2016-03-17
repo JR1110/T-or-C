@@ -13,18 +13,14 @@ public class Panel extends View {
     public Panel(Context context, AttributeSet attrs) { super(context, attrs); }
     public Panel(Context context, AttributeSet attrs, int defStyle) { super(context, attrs, defStyle); }
 
+    float f;
+
     @Override
     protected void onDraw(Canvas canvas)
     {
-        float f = 300;      //velue used to store amount of milk, dynamically changed by user
-
-        /*@Override
-        public boolean onTouchEvent(MotionEvent e){
-            float y = e.getY();
-            f = y;
-        }
-*/
         Paint paint = new Paint();      //setting up a new paint
+
+        f = 300;      //value used to store amount of milk, dynamically changed by user
 
         paint.setColor(Color.BLACK);        //setting the default colour to black
         canvas.drawRect(125, 125, 750, 800, paint);     //drawing rectangle for main body of mug
@@ -38,4 +34,13 @@ public class Panel extends View {
         paint.setColor(Color.WHITE);
         canvas.drawRect(150, 150, 725, f, paint);       //variable height adjust based on float f
     }
+
+    /*
+    @Override
+    public boolean onTouchEvent(MotionEvent e){
+        f = e.getY();
+
+        return true;
+    }
+    */
 }
