@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -23,15 +25,18 @@ public class MainActivity extends ActionBarActivity {
         LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
         mug.addView(new Panel(this), 0);      //adding the panel view to the linear layout flPanel
 
-        final Button btnTea = (Button) findViewById(R.id.btnTea);             //variable for the tea button
+        final order o = new order();      //setting up a new order
+
+        final AtomicReference<Button> btnTea = new AtomicReference<>((Button) findViewById(R.id.btnTea));             //variable for the tea button
         final Button btnCoffee = (Button) findViewById(R.id.btnCoffee);       //variable used for the coffee button
         final Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
 
-        btnTea.setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
+        btnTea.get().setOnClickListener(new View.OnClickListener() {      //opens up new on click listener tea button
             @Override
             public void onClick(View v) {
-                btnTea.setTextColor(Color.RED);      //sets the font colour of the button to red
+                btnTea.get().setTextColor(Color.RED);      //sets the font colour of the button to red
                 btnCoffee.setTextColor(Color.BLACK); //Sets the coffee button's colour back to normal
+                btnCoffee.setSelected(false);           //sets the coffee selected to false
             }
         });
 
@@ -39,19 +44,39 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v){
                 btnCoffee.setTextColor(Color.RED);       //changes the buttons colour
-                btnTea.setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
+                btnCoffee.setSelected(true);          //makes the button selected
+                btnTea.get().setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
             }
         });
 
         btnNext.setOnClickListener(new View.OnClickListener(){      //opens up a new on click listener for the next person button
+
+            EditText name = (EditText) findViewById(R.id.nameInput);     //finds the user's textbox
+
             @Override
             public void onClick(View v){
-                btnTea.setTextColor(Color.BLACK);       //resets tea to black
+                try {
+                    o.setName(name.toString());
+                    if (btnCoffee.isSelected()) {
+                        o.setDrink("Coffee");
+                    } else {
+                        o.setDrink("Tea");
+                    }
+                }
+                catch (Exception ex){
+
+                }
+
+                reset();        //runs the reset subroutine
+            }
+
+            public void reset(){
+                btnTea.get().setTextColor(Color.BLACK);       //resets tea to black
                 btnCoffee.setTextColor(Color.BLACK);        //resets coffee button to black
-                EditText name = (EditText) findViewById(R.id.nameInput);     //finds the user's textbox
                 name.setText("");       //resets the textbox to blank
             }
         });
+
     }
 
     @Override
