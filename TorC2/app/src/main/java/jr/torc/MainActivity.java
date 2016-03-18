@@ -25,7 +25,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
+        final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
+        final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);
+        final EditText txtSpecifyInput = (EditText) findViewById(R.id.txtOtherInput);
+
         mug.addView(new Panel(this), 0);      //adding the panel view to the linear layout flPanel
 
         final order o = new order();      //setting up a new order
@@ -33,6 +36,7 @@ public class MainActivity extends ActionBarActivity {
         final Button btnTea = (Button) findViewById(R.id.btnTea);             //variable for the tea button
         final Button btnCoffee = (Button) findViewById(R.id.btnCoffee);       //variable used for the coffee button
         final Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
+        final Button btnOther = (Button) findViewById(R.id.btnOther);         //variable used for the other button
 
         final Button btnMinus = (Button) findViewById(R.id.btnMinus);       //variable used for the minus button
         final Button btnPlus = (Button) findViewById(R.id.btnPlus);         //variable used for the plus button
@@ -53,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                 if (sugar >= 0 && sugar < 9) {        //if there is 0 or more sugar (can't be a negative number)
                     sugar++;      //adds one to the sugar level
@@ -68,7 +72,15 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 btnTea.setTextColor(Color.RED);      //sets the font colour of the button to red
                 btnCoffee.setTextColor(Color.BLACK); //Sets the coffee button's colour back to normal
+                btnOther.setTextColor(Color.BLACK);     //sets the text colour of other button to black
+                btnTea.setSelected(true);           //sets the tea selected to true
                 btnCoffee.setSelected(false);           //sets the coffee selected to false
+                btnOther.setSelected(false);           //sets the other selected to false
+
+                mug.setVisibility(View.VISIBLE);        //makes the mug visible
+
+                txtSpecify.setVisibility(View.GONE);        //hides the text specify
+                txtSpecifyInput.setVisibility(View.GONE);        //hides the input for specify
             }
         });
 
@@ -77,7 +89,33 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v){
                 btnCoffee.setTextColor(Color.RED);       //changes the buttons colour
                 btnCoffee.setSelected(true);          //makes the button selected
+                btnTea.setSelected(false);           //sets the tea selected to false
+                btnOther.setSelected(false);           //sets the other selected to false
                 btnTea.setTextColor(Color.BLACK);       //changes the tea buttons colour back to normal
+                btnOther.setTextColor(Color.BLACK);     //sets the text colour of other button to black
+
+                mug.setVisibility(View.VISIBLE);      //adding the panel view to the linear layout flPanel
+
+                txtSpecify.setVisibility(View.GONE);        //hides the text specify
+                txtSpecifyInput.setVisibility(View.GONE);        //hides the input for specify
+            }
+        });
+
+        btnOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOther.setTextColor(Color.RED);      //sets the font colour of the button to red
+                btnCoffee.setTextColor(Color.BLACK); //Sets the coffee button's colour back to normal
+                btnTea.setTextColor(Color.BLACK);     //sets the text colour of Tea button to black
+                btnOther.setSelected(true);           //sets the other selected to true
+                btnCoffee.setSelected(false);           //sets the coffee selected to false
+                btnTea.setSelected(false);           //sets the Tea selected to false
+
+                mug.setVisibility(View.GONE);       //stops showing the mug
+
+                txtSpecify.setVisibility(View.VISIBLE);        //shows the text specify
+                txtSpecifyInput.setVisibility(View.VISIBLE);        //shows the input for specify
+
             }
         });
 
@@ -93,6 +131,8 @@ public class MainActivity extends ActionBarActivity {
                         o.setDrink("Coffee");
                     } else if (btnTea.isSelected()){
                         o.setDrink("Tea");
+                    } else if (btnOther.isSelected()){
+                        o.setDrink(txtSpecifyInput.getText().toString());
                     }
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                     o.setSugar(sugar);      //sets the sugar level as such

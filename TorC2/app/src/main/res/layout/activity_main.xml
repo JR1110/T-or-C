@@ -45,17 +45,30 @@
             android:text="Tea"
             android:id="@+id/btnTea"
             android:layout_weight="0.47"
-            android:gravity="left"/>
+            android:gravity="left"
+            android:layout_column="0"
+            android:layout_span="2"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Coffee"
+                android:id="@+id/btnCoffee"
+                android:layout_weight="0.47"
+                android:gravity="right"
+                android:layout_column="2" />
         </TableRow>
         <TableRow>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Coffee"
-            android:id="@+id/btnCoffee"
-            android:layout_weight="0.47"
-            android:gravity="right"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Other"
+                android:id="@+id/btnOther"
+                android:layout_column="1"
+                android:layout_span="5" />
         </TableRow>
 
         <TableRow
@@ -130,6 +143,25 @@
         android:id="@+id/flPanel"
         android:orientation="horizontal">
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/txtSpecify"
+        android:id="@+id/txtSpecify"
+        android:layout_below="@+id/tableLayout"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:ems="9"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtOtherInput"
+        android:layout_weight="1"
+        android:layout_below="@+id/tableLayout"
+        android:layout_toRightOf="@+id/txtSpecify"
+        android:visibility="invisible"/>
 
     <Button
         android:layout_width="wrap_content"

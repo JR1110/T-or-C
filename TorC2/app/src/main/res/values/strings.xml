@@ -6,6 +6,7 @@
     <string name="btnPlus">+</string>
     <string name="btnMinus">-</string>
     <string name="txtSugar">Sugar :</string>
+    <string name="txtSpecify">Specify :</string>
 
     <color name="brown">#000000</color>
 </resources>
