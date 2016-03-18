@@ -2,6 +2,7 @@ package jr.torc;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.JsonWriter;
@@ -157,26 +158,28 @@ public class MainActivity extends ActionBarActivity {
             }
 
             public void jsonWriter(){
-                try {
-                    File file = new File(getFilesDir(), "orders.json");     //opening up a new file
-                    FileOutputStream fOS = new FileOutputStream(file);      //opening up a new file stream
+                String state = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state)) {
+                    try {
+                        File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.json");     //opening up a new file
+                        FileOutputStream fOS = new FileOutputStream(file);      //opening up a new file stream
 
-                    JsonWriter jW = new JsonWriter(new OutputStreamWriter(fOS, "UTF-8"));       //opening up a new JSON writer
-                    jW.setIndent("  ");         //setting the indent to tab
+                        JsonWriter jW = new JsonWriter(new OutputStreamWriter(fOS, "UTF-8"));       //opening up a new JSON writer
+                        jW.setIndent("  ");         //setting the indent to tab
 
-                    jW.beginArray();                                    //beggining the array
+                        jW.beginArray();                                    //beggining the array
                         jW.beginObject();                               //beggining the object
-                            jW.name("Name").value(o.getName());         //saving name as name
-                            jW.name("Drink").value(o.getDrink());       //saving the drink as drink
-                            jW.name("Sugar").value(o.getSugar());       //saving the sugar as sugar
-                            jW.name("Milk").value(o.getMilkLevel());    //saving the milk level as milk
+                        jW.name("Name").value(o.getName());         //saving name as name
+                        jW.name("Drink").value(o.getDrink());       //saving the drink as drink
+                        jW.name("Sugar").value(o.getSugar());       //saving the sugar as sugar
+                        jW.name("Milk").value(o.getMilkLevel());    //saving the milk level as milk
                         jW.endObject();                                 //ending the object
-                    jW.endArray();                                      //ending the array
+                        jW.endArray();                                      //ending the array
 
-                    jW.close();                                 //closing the writer
-                }
-                catch (Exception ex){
-                    Log.d("Writing error :", ex.getMessage());
+                        jW.close();                                 //closing the writer
+                    } catch (Exception ex) {
+                        Log.d("Writing error :", ex.getMessage());
+                    }
                 }
             }
 
@@ -186,6 +189,8 @@ public class MainActivity extends ActionBarActivity {
                 btnOther.setTextColor(Color.BLACK);         //resets the other colour to black
                 txtSpecify.setVisibility(View.GONE);        //hides the text specify
                 txtSpecifyInput.setVisibility(View.GONE);        //hides the input for specify
+                txtSpecifyInput.setText("");        //resets the text of other
+                mug.setVisibility(View.VISIBLE);        //shows the mug
                 name.setText("");       //resets the textbox to blank
                 numSugar.setText("0");      //resets the sugar level to 0
             }
