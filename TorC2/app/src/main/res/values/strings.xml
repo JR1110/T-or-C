@@ -9,4 +9,5 @@
     <string name="txtSpecify">Specify :</string>
 
     <color name="brown">#000000</color>
+    <string name="title_activity_view_orders">viewOrders</string>
 </resources>
