@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.JsonWriter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +17,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -137,17 +143,49 @@ public class MainActivity extends ActionBarActivity {
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                     o.setSugar(sugar);      //sets the sugar level as such
                     o.setMilkLevel(300);    //TODO, currently hardcoded
+
+                    jsonWriter();       //runs the JSON writer
+
+                    Toast success = Toast.makeText(MainActivity.this, "Drink added", Toast.LENGTH_SHORT);
+                    success.show();
+
+                    reset();        //runs the reset subroutine
                 }
                 catch (Exception ex){
                     Log.d("Creating class error :", ex.getMessage());
                 }
+            }
 
-                reset();        //runs the reset subroutine
+            public void jsonWriter(){
+                try {
+                    File file = new File(getFilesDir(), "orders.json");     //opening up a new file
+                    FileOutputStream fOS = new FileOutputStream(file);      //opening up a new file stream
+
+                    JsonWriter jW = new JsonWriter(new OutputStreamWriter(fOS, "UTF-8"));       //opening up a new JSON writer
+                    jW.setIndent("  ");         //setting the indent to tab
+
+                    jW.beginArray();                                    //beggining the array
+                        jW.beginObject();                               //beggining the object
+                            jW.name("Name").value(o.getName());         //saving name as name
+                            jW.name("Drink").value(o.getDrink());       //saving the drink as drink
+                            jW.name("Sugar").value(o.getSugar());       //saving the sugar as sugar
+                            jW.name("Milk").value(o.getMilkLevel());    //saving the milk level as milk
+                        jW.endObject();                                 //ending the object
+                    jW.endArray();                                      //ending the array
+
+                    jW.close();                                 //closing the writer
+                }
+                catch (Exception ex){
+                    Log.d("Writing error :", ex.getMessage());
+                }
             }
 
             public void reset(){
                 btnTea.setTextColor(Color.BLACK);       //resets tea to black
                 btnCoffee.setTextColor(Color.BLACK);        //resets coffee button to black
+                btnOther.setTextColor(Color.BLACK);         //resets the other colour to black
+                txtSpecify.setVisibility(View.GONE);        //hides the text specify
+                txtSpecifyInput.setVisibility(View.GONE);        //hides the input for specify
                 name.setText("");       //resets the textbox to blank
                 numSugar.setText("0");      //resets the sugar level to 0
             }
