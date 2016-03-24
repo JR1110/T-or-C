@@ -20,7 +20,7 @@ public class viewOrders extends ActionBarActivity {
 
     ExpandableListAdapter expandableListAdapter;           //setting it up for the list adaptor
     expandedListView expandedListView;                      //setting up an extendable list view
-    List<String> listHeaders;                               //list of strings for the headers
+    List<String> listHeaders = new ArrayList<String>();                               //list of strings for the headers
     HashMap<String, List<String>> listItems ;               //hashmap used for the items in the headers
 
 
@@ -31,23 +31,25 @@ public class viewOrders extends ActionBarActivity {
 
         ExpandableListView eLV = (ExpandableListView) findViewById(R.id.viewOrders);
 
-        prepareHeaderData();        //runs the sub-routine fo rht ehaders of the drinks
-
         readIn();       //runs in the read in sub-routine
 
         try {
+            prepareHeaderData();        //runs the sub-routine fo rht headers of the drinks
             expandableListAdapter = new expandedListView(listHeaders, listItems, this);
+            eLV.setAdapter(expandableListAdapter);
         } catch (Exception ex) {
             Log.d("dropdown error", ex.getMessage());
         }
 
-        eLV.setAdapter(expandableListAdapter);
+
     }
 
     private void prepareHeaderData() {
         listHeaders.add("Tea");         //making tea header
         listHeaders.add("Coffee");      //making coffee header
         listHeaders.add("Other");       //making other header
+
+
     }
 
 
@@ -67,10 +69,11 @@ public class viewOrders extends ActionBarActivity {
                 }
                 iS.close();         //closes the reader
 
-
             } catch (Exception ex) {        //catches any exceptions
                 Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
             }
+
+            String[] split = sB.toString().split(" ");
         }
     }
 
