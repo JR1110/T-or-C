@@ -21,7 +21,7 @@ public class viewOrders extends ActionBarActivity {
     ExpandableListAdapter expandableListAdapter;           //setting it up for the list adaptor
     expandedListView expandedListView;                      //setting up an extendable list view
     List<String> listHeaders = new ArrayList<String>();                               //list of strings for the headers
-    HashMap<String, List<String>> listItems ;               //hashmap used for the items in the headers
+    HashMap<String, List<String>> listItems = new HashMap<>();               //hashmap used for the items in the headers
 
 
     @Override
@@ -90,16 +90,31 @@ public class viewOrders extends ActionBarActivity {
                 {
                     continue;                                   //skip and go onto next iteration
                 } else {
-                    Log.d("Message : ", orderDetails[0]);
+                    String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0] == "Tea") {                   //if it is a tea order
-                        Teas.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                        //adds the formatted string order to the list
+                        Teas.add(fullOrder.toString());                        //adds the formatted string order to the list
                     } else if (orderDetails[0] == "Coffee") {       //if it is a coffee order
-                        Coffees.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                     //adds the formatted string order to the list
+                        Coffees.add(fullOrder.toString());                     //adds the formatted string order to the list
                     } else if (orderDetails[0] == "Other") {        //if it is a 'other' order
-                        Others.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                      //adds the formatted string order to the list
+                        Others.add(fullOrder.toString());                      //adds the formatted string order to the list
                     }
                 }
             }
+        }
+
+        if (Teas.size() == 0)
+        {
+            Teas.add("No Teas...");         //shows the user that no teas have been added
+        }
+
+        if (Coffees.size() == 0)
+        {
+            Coffees.add("No Teas...");      //shows the user that no coffees have been added
+        }
+
+        if (Others.size() == 0)
+        {
+            Others.add("No Other drinks...");       //shows the user no 'others' have been added
         }
 
         listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
