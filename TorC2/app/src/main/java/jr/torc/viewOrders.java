@@ -6,18 +6,52 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class viewOrders extends ActionBarActivity {
+
+    ExpandableListAdapter expandableListAdapter;           //setting it up for the list adaptor
+    expandedListView expandedListView;                      //setting up an extendable list view
+    List<String> listHeaders;                               //list of strings for the headers
+    HashMap<String, List<String>> listItems ;               //hashmap used for the items in the headers
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_orders);
 
+        ExpandableListView eLV = (ExpandableListView) findViewById(R.id.viewOrders);
+
+        prepareHeaderData();        //runs the sub-routine fo rht ehaders of the drinks
+
+        readIn();       //runs in the read in sub-routine
+
+        try {
+            expandableListAdapter = new expandedListView(listHeaders, listItems, this);
+        } catch (Exception ex) {
+            Log.d("dropdown error", ex.getMessage());
+        }
+
+        eLV.setAdapter(expandableListAdapter);
+    }
+
+    private void prepareHeaderData() {
+        listHeaders.add("Tea");         //making tea header
+        listHeaders.add("Coffee");      //making coffee header
+        listHeaders.add("Other");       //making other header
+    }
+
+
+    private void readIn() {
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
             File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.json");         //oppening up the JSON file
@@ -33,7 +67,6 @@ public class viewOrders extends ActionBarActivity {
                 }
                 iS.close();         //closes the reader
 
-                Log.d("Hello! :", sB.toString());       //for me to see!
 
             } catch (Exception ex) {        //catches any exceptions
                 Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
