@@ -54,6 +54,10 @@ public class viewOrders extends ActionBarActivity {
 
 
     private void readIn() {
+        List<String> Teas = new ArrayList<String>();            //list used for order strings for teas
+        List<String> Coffees = new ArrayList<String>();         //list used for order strings for coffees
+        List<String> Others = new ArrayList<String>();          //list used for order string for 'others
+
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
             File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.txt");         //oppening up the JSON file
@@ -73,8 +77,29 @@ public class viewOrders extends ActionBarActivity {
                 Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
             }
 
-            String[] split = sB.toString().split(";");
+            String[] split = sB.toString().split(";");          //splitting up the read in on the ; character
+
+            for(int i = 0; i < split.length; i++)       //until the whole array is read
+            {
+                String order = split[i].toString();             //flatten out the individual order
+
+                String[] orderDetails = order.split(" ");       //splitting the order into components
+
+                String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";        //formatted string for the order
+
+                if(orderDetails[0] == "Tea"){                   //if it is a tea order
+                    Teas.add(fullOrder);                        //adds the formatted string order to the list
+                } else if (orderDetails[0] == "Coffee") {       //if it is a coffee order
+                    Coffees.add(fullOrder);                     //adds the formatted string order to the list
+                } else if (orderDetails[0] == "Other") {        //if it is a 'other' order
+                    Others.add(fullOrder);                      //adds the formatted string order to the list
+                }
+            }
         }
+
+        listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
+        listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
+        listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
     }
 
     @Override
