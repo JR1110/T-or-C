@@ -7,5 +7,10 @@
     android:background="#663300">
 
 
-
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"></GridLayout>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package jr.torc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -44,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
         final Button btnCoffee = (Button) findViewById(R.id.btnCoffee);       //variable used for the coffee button
         final Button btnNext = (Button) findViewById(R.id.btnNextOrder);      //variable for the next person button
         final Button btnOther = (Button) findViewById(R.id.btnOther);         //variable used for the other button
+        final Button btnFinish = (Button) findViewById(R.id.btnFinish);       //variable used for the finish button
 
         final Button btnMinus = (Button) findViewById(R.id.btnMinus);       //variable used for the minus button
         final Button btnPlus = (Button) findViewById(R.id.btnPlus);         //variable used for the plus button
@@ -193,6 +195,14 @@ public class MainActivity extends ActionBarActivity {
                 mug.setVisibility(View.VISIBLE);        //shows the mug
                 name.setText("");       //resets the textbox to blank
                 numSugar.setText("0");      //resets the sugar level to 0
+            }
+        });
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
+                startActivity(intent);      //starts the intent activity
             }
         });
 

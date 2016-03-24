@@ -1,9 +1,14 @@
 package jr.torc;
 
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.File;
+import java.io.FileInputStream;
 
 
 public class viewOrders extends ActionBarActivity {
@@ -12,6 +17,28 @@ public class viewOrders extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_orders);
+
+        String state = Environment.getExternalStorageState();       //getting the storage state
+        if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
+            File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.json");         //oppening up the JSON file
+            StringBuffer sB = new StringBuffer("");         //setting up a string buffer
+            int ch;
+
+            try {
+
+                FileInputStream iS = new FileInputStream(file);         //setting up the new input stream
+                while ((ch = iS.read()) != -1)      //while there is more to read
+                {
+                    sB.append((char) ch);       //adds the next character to the string buffer
+                }
+                iS.close();         //closes the reader
+
+                Log.d("Hello! :", sB.toString());       //for me to see!
+
+            } catch (Exception ex) {        //catches any exceptions
+                Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
+            }
+        }
     }
 
     @Override
