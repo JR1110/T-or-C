@@ -19,10 +19,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -135,8 +138,14 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v){
                 try {
-                    o.setName(name.getText().toString());
-                    if (btnCoffee.isSelected()) {
+                    if (name.getText() == null) {
+                        Toast needName = Toast.makeText(MainActivity.this, "Name needed", Toast.LENGTH_SHORT);       //creating toast to prompt user they need to add their name
+                        needName.show();
+                        throw new IllegalArgumentException("no name");
+                    } else {
+                        o.setName(name.getText().toString());
+                    }
+                    if (btnCoffee.isSelected()) {       //setting the drink
                         o.setDrink("Coffee");
                     } else if (btnTea.isSelected()){
                         o.setDrink("Tea");
@@ -163,22 +172,12 @@ public class MainActivity extends ActionBarActivity {
                 String state = Environment.getExternalStorageState();
                 if (Environment.MEDIA_MOUNTED.equals(state)) {
                     try {
-                        File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.json");     //opening up a new file
-                        FileOutputStream fOS = new FileOutputStream(file);      //opening up a new file stream
+                        File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.txt");     //opening up a new file
+                        PrintWriter printOut = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));         //creates a new printwriter
 
-                        JsonWriter jW = new JsonWriter(new OutputStreamWriter(fOS, "UTF-8"));       //opening up a new JSON writer
-                        jW.setIndent("  ");         //setting the indent to tab
+                        printOut.println(o.getDrink().toString() + " " + o.getName().toString() + " " + o.getMilkLevel() + " " + o.getSugar() + ";");         //prints the info the the printer
 
-                        jW.beginArray();                                    //beggining the array
-                        jW.beginObject();                               //beggining the object
-                        jW.name("Name").value(o.getName());         //saving name as name
-                        jW.name("Drink").value(o.getDrink());       //saving the drink as drink
-                        jW.name("Sugar").value(o.getSugar());       //saving the sugar as sugar
-                        jW.name("Milk").value(o.getMilkLevel());    //saving the milk level as milk
-                        jW.endObject();                                 //ending the object
-                        jW.endArray();                                      //ending the array
-
-                        jW.close();                                 //closing the writer
+                        printOut.close();       //closes the output printer
                     } catch (Exception ex) {
                         Log.d("Writing error :", ex.getMessage());
                     }

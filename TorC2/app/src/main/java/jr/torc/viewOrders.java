@@ -56,7 +56,7 @@ public class viewOrders extends ActionBarActivity {
     private void readIn() {
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
-            File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.json");         //oppening up the JSON file
+            File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.txt");         //oppening up the JSON file
             StringBuffer sB = new StringBuffer("");         //setting up a string buffer
             int ch;
 
@@ -73,7 +73,7 @@ public class viewOrders extends ActionBarActivity {
                 Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
             }
 
-            String[] split = sB.toString().split(" ");
+            String[] split = sB.toString().split(";");
         }
     }
 

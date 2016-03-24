@@ -11,6 +11,7 @@
         android:textColor="#ff000000"
         android:gravity="center_vertical"
         android:text=" "
-        android:textSize="20dp"/>>
+        android:textSize="20dp"
+        android:background="#ffffff"/>>
 
 </LinearLayout>
