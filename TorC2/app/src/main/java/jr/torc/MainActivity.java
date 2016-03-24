@@ -135,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v){
                 try {
-                    o.setName(name.toString());
+                    o.setName(name.getText().toString());
                     if (btnCoffee.isSelected()) {
                         o.setDrink("Coffee");
                     } else if (btnTea.isSelected()){
