@@ -31,10 +31,10 @@ public class viewOrders extends ActionBarActivity {
 
         ExpandableListView eLV = (ExpandableListView) findViewById(R.id.viewOrders);
 
-        readIn();       //runs in the read in sub-routine
-
         try {
             prepareHeaderData();        //runs the sub-routine fo rht headers of the drinks
+            readIn();       //runs in the read in sub-routine
+
             expandableListAdapter = new expandedListView(listHeaders, listItems, this);
             eLV.setAdapter(expandableListAdapter);
         } catch (Exception ex) {
@@ -84,19 +84,19 @@ public class viewOrders extends ActionBarActivity {
                 String order = split[i].toString();             //flatten out the individual order
 
                 String[] orderDetails = order.split(" ");       //splitting the order into components
+                orderDetails[0].replace("\n","");               //removes the backspaces
 
-                if (orderDetails.length < 4)                    //if there is no array based on spaces
+                if (orderDetails.length != 4)                    //if there is no array based on spaces
                 {
                     continue;                                   //skip and go onto next iteration
                 } else {
-                    String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";        //formatted string for the order
-
+                    Log.d("Message : ", orderDetails[0]);
                     if (orderDetails[0] == "Tea") {                   //if it is a tea order
-                        Teas.add(fullOrder);                        //adds the formatted string order to the list
+                        Teas.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                        //adds the formatted string order to the list
                     } else if (orderDetails[0] == "Coffee") {       //if it is a coffee order
-                        Coffees.add(fullOrder);                     //adds the formatted string order to the list
+                        Coffees.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                     //adds the formatted string order to the list
                     } else if (orderDetails[0] == "Other") {        //if it is a 'other' order
-                        Others.add(fullOrder);                      //adds the formatted string order to the list
+                        Others.add(orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars");                      //adds the formatted string order to the list
                     }
                 }
             }
