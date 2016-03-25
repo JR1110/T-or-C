@@ -89,10 +89,12 @@ public class expandedListView extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final String childText = (String) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inf = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-            convertView = infalInflater.inflate(R.layout.items, null);
+        if (convertView == null) {
+
+            convertView = inf.inflate(R.layout.items, null);
+
         }
 
         TextView txtChild = (TextView) convertView.findViewById(R.id.child);
