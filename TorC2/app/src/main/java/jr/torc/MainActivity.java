@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
         final TextView numSugar = (TextView) findViewById(R.id.numSugar);       //variable used for the sugar number
         numSugar.setText("0");          //sets the level to be 0 from the start
 
-        final RadioGroup rG = (RadioGroup) findViewById(R.id.milkGroup);          //varibale used for the radio buttons
+        final RadioGroup rG = (RadioGroup) findViewById(R.id.milkGroup);          //variable used for the radio buttons
 
         rG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
@@ -236,9 +236,9 @@ public class MainActivity extends ActionBarActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
-                intent.putExtra("pN", partyName);        //adding the party name to the intent
-                startActivity(intent);      //starts the intent activity
+                Intent in = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
+                in.putExtra("pN", partyName.toString());        //adding the party name to the intent
+                startActivity(in);      //starts the intent activity
             }
         });
 

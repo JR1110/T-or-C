@@ -19,17 +19,18 @@ import java.util.List;
 
 public class viewOrders extends ActionBarActivity {
 
+    Intent previousIntent = getIntent();        //getting the intent from the previous screen
+    final String partyName = previousIntent.getExtras().getString("pN");       //setting up the party name
+
     ExpandableListAdapter eLa;           //setting it up for the list adaptor
     ExpandableListView eLV;                      //setting up an extendable list view
-    List<String> listHeaders = new ArrayList<String>();                               //list of strings for the headers
+    List<String> listHeaders = new ArrayList<>();                               //list of strings for the headers
     HashMap<String, List<String>> listItems = new HashMap<>();               //hashmap used for the items in the headers
 
     List<String> Teas = new ArrayList<>();            //list used for order strings for teas
     List<String> Coffees = new ArrayList<>();         //list used for order strings for coffees
     List<String> Others = new ArrayList<>();          //list used for order string for 'others
 
-    Intent previousIntent = getIntent();        //getting the intent that took the user here
-    final String partyName = previousIntent.getExtras().getString("pN");       //getting the party name
 
 
 
