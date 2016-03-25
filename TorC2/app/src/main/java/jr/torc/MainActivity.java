@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         Intent previousIntent = getIntent();        //getting the intent from the previous screen
-        final String partyName = previousIntent.getExtras().getString("partyName");       //setting up the party name
+        final String partyName = previousIntent.getExtras().getString("pN");       //setting up the party name
 
         final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
         final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);
@@ -237,7 +237,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
-                intent.putExtra("partyName", partyName);        //adding the party name to the intent
+                intent.putExtra("pN", partyName);        //adding the party name to the intent
                 startActivity(intent);      //starts the intent activity
             }
         });

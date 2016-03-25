@@ -29,7 +29,7 @@ public class viewOrders extends ActionBarActivity {
     List<String> Others = new ArrayList<>();          //list used for order string for 'others
 
     Intent previousIntent = getIntent();        //getting the intent that took the user here
-    String partyName = previousIntent.getExtras().getString("partyName");       //getting the party name
+    final String partyName = previousIntent.getExtras().getString("pN");       //getting the party name
 
 
 

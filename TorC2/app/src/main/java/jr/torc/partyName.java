@@ -27,7 +27,7 @@ public class partyName extends ActionBarActivity {
                 Intent intent = new Intent(partyName.this, MainActivity.class);         //sets the intent to go to the main activity
 
                 if (txtPartyName.getText().length() > 0) {
-                    intent.putExtra("partyName", txtPartyName.getText());           //sending the party name through intent
+                    intent.putExtra("pN", txtPartyName.getText().toString());           //sending the party name through intent
                     startActivity(intent);                                                  //starts the main activity
                 } else {
                     Toast needName = Toast.makeText(partyName.this, "Event Name Needed", Toast.LENGTH_SHORT);
