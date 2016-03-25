@@ -72,12 +72,19 @@ public class MainActivity extends ActionBarActivity {
                 if(checkedRB.getText().equals("Milk")) {
                     f = 300;
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
-                } else if (checkedRB.getText().equals("More Milk")) {
-                    f = 500;
+                    o.setMilkLevel("Milk");                                 //adding milk level to the order
+                } else if (checkedRB.getText().equals("More")) {
+                    f = 400;
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                    o.setMilkLevel("Lots of milk!");                        //adding milk level to th order
                 } else if (checkedRB.getText().equals("No Milk")) {
                     f = 0;
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                    o.setMilkLevel("No Milk");                              //adding the milk level to the order
+                } else if(checkedRB.getText().equals("Less")) {
+                    f = 200;
+                    mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                    o.setMilkLevel("A little milk");                        //adding the milk level to the order
                 }
             }
         });
@@ -181,7 +188,6 @@ public class MainActivity extends ActionBarActivity {
                     }
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                     o.setSugar(sugar);      //sets the sugar level as such
-                    o.setMilkLevel(300);    //TODO, currently hardcoded
 
                     jsonWriter();       //runs the JSON writer
 

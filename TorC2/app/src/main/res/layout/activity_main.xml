@@ -131,18 +131,23 @@
                     android:layout_height="wrap_content"
                     android:text="No Milk"
                     android:id="@+id/rbNoMilk"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Less"
+                    android:id="@+id/rbLittleMilk"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Milk"
-                    android:id="@+id/rbLittleMilk"
+                    android:id="@+id/rbMilk"
                     android:checked="true"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="More Milk"
+                    android:text="More"
                     android:id="@+id/rbLotsMilk" />
             </RadioGroup>
         </TableRow>

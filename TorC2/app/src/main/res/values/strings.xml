@@ -11,5 +11,9 @@
     <color name="brown">#000000</color>
     <string name="title_activity_view_orders">viewOrders</string>
     <string name="btnNextOrder"><![CDATA[     Next Person >>]]></string>
+    <string name="title_activity_party_name">Party Name</string>
+    <string name="txtWelcome">Welcome!\nEnter your event name :</string>
+    <string name="btnStart">Get Started</string>
+
 
 </resources>

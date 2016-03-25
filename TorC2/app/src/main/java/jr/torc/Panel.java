@@ -18,7 +18,7 @@ public class Panel extends View {
         this.f = f;
     }
 
-    float f;
+    float f = 300;
 
     @Override
     protected void onDraw(Canvas canvas)

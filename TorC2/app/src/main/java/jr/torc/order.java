@@ -5,7 +5,7 @@ public class order {
     private String name;        //string for the persons name
     private String drink;       //string for what drink they want
     private int sugar;          //int for number of sugars wanted
-    private int milkLevel;      //int for the f level of milk stored for the image
+    private String milkLevel;      //int for the f level of milk stored for the image
 
     public void setName(String name)        //setter for name
     {
@@ -34,11 +34,11 @@ public class order {
         return sugar;
     }
 
-    public void setMilkLevel(int milkLevel)        //setter for milk level
+    public void setMilkLevel(String milkLevel)        //setter for milk level
     {
         this.milkLevel = milkLevel;
     }
-    public int getMilkLevel()                 //getter for milk level
+    public String getMilkLevel()                 //getter for milk level
     {
         return milkLevel;
     }
