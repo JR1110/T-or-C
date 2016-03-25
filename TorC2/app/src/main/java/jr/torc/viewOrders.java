@@ -1,5 +1,6 @@
 package jr.torc;
 
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class viewOrders extends ActionBarActivity {
     List<String> Teas = new ArrayList<>();            //list used for order strings for teas
     List<String> Coffees = new ArrayList<>();         //list used for order strings for coffees
     List<String> Others = new ArrayList<>();          //list used for order string for 'others
+
+    Intent previousIntent = getIntent();        //getting the intent that took the user here
+    String partyName = previousIntent.getExtras().getString("partyName");       //getting the party name
 
 
 
@@ -62,7 +66,7 @@ public class viewOrders extends ActionBarActivity {
     private void readIn() {
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
-            File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.txt");         //oppening up the JSON file
+            File file = new File(getApplicationContext().getExternalFilesDir(null), partyName+".txt");         //oppening up the JSON file
             StringBuffer sB = new StringBuffer("");         //setting up a string buffer
             int ch;
 

@@ -42,6 +42,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent previousIntent = getIntent();        //getting the intent from the previous screen
+        final String partyName = previousIntent.getExtras().getString("partyName");       //setting up the party name
+
         final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
         final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);
         final EditText txtSpecifyInput = (EditText) findViewById(R.id.txtOtherInput);
@@ -189,7 +192,7 @@ public class MainActivity extends ActionBarActivity {
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                     o.setSugar(sugar);      //sets the sugar level as such
 
-                    jsonWriter();       //runs the JSON writer
+                    txtWriter();       //runs the JSON writer
 
                     Toast success = Toast.makeText(MainActivity.this, "Drink added", Toast.LENGTH_SHORT);
                     success.show();
@@ -201,11 +204,11 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
 
-            public void jsonWriter(){
+            public void txtWriter(){
                 String state = Environment.getExternalStorageState();
                 if (Environment.MEDIA_MOUNTED.equals(state)) {
                     try {
-                        File file = new File(getApplicationContext().getExternalFilesDir(null), "orders.txt");     //opening up a new file
+                        File file = new File(getApplicationContext().getExternalFilesDir(null), partyName+".txt");     //opening up a new file
                         PrintWriter printOut = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));         //creates a new printwriter
 
                         printOut.println(o.getDrink().toString() + " " + o.getName().toString() + " " + o.getMilkLevel() + " " + o.getSugar() + ";");         //prints the info the the printer
@@ -234,6 +237,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
+                intent.putExtra("partyName", partyName);        //adding the party name to the intent
                 startActivity(intent);      //starts the intent activity
             }
         });
