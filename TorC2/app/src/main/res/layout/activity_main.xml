@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/name"
                 android:text="Name : "
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
 
             <EditText
                 android:id="@+id/nameInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:ems="9"
                 android:layout_column="2" />
         </TableRow>
@@ -41,34 +41,34 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Tea"
             android:id="@+id/btnTea"
             android:layout_weight="0.47"
-            android:gravity="left"
+            android:gravity="center_vertical"
             android:layout_column="0"
-            android:layout_span="2"/>
+            android:layout_span="1"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Coffee"
                 android:id="@+id/btnCoffee"
                 android:layout_weight="0.47"
-                android:gravity="right"
-                android:layout_column="2" />
+                android:gravity="center_vertical"
+                android:layout_column="1" />
         </TableRow>
         <TableRow>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Other"
                 android:id="@+id/btnOther"
-                android:layout_column="1"
-                android:layout_span="5" />
+                android:layout_column="0"
+                android:layout_span="4" />
         </TableRow>
 
         <TableRow
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/txtSugar"
                 android:id="@+id/txtSugar"
                 android:layout_column="0"
@@ -87,35 +87,35 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/btnMinus"
                 android:id="@+id/btnMinus"
-                android:layout_column="2"
-                android:layout_weight="0.2"/>
+                android:layout_column="1"
+                android:layout_weight="0.0001"/>
 
             <TextView
-                android:layout_width="20dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:ems="10"
+                android:ems="5"
                 android:id="@+id/numSugar"
-                android:layout_column="3"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_column="2"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAlignment="center"
-                android:layout_weight="0.1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_weight="0.4"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/btnPlus"
                 android:id="@+id/btnPlus"
                 android:layout_column="2"
-                android:layout_weight="0.2"/>
+                android:layout_weight="0.4"/>
         </TableRow>
 
     </TableLayout>
@@ -123,10 +123,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Person >>"
+        android:text="@string/btnNextOrder"
         android:id="@+id/btnNextOrder"
         android:gravity="right"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="right|bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tableLayout"
@@ -167,7 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Finished"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/btnFinish"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

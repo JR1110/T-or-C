@@ -18,7 +18,7 @@ import java.util.List;
 
 public class viewOrders extends ActionBarActivity {
 
-    ExpandableListAdapter expandableListAdapter;           //setting it up for the list adaptor
+    ExpandableListAdapter eLa;           //setting it up for the list adaptor
     ExpandableListView eLV;                      //setting up an extendable list view
     List<String> listHeaders = new ArrayList<String>();                               //list of strings for the headers
     HashMap<String, List<String>> listItems = new HashMap<>();               //hashmap used for the items in the headers
@@ -26,6 +26,7 @@ public class viewOrders extends ActionBarActivity {
     List<String> Teas = new ArrayList<>();            //list used for order strings for teas
     List<String> Coffees = new ArrayList<>();         //list used for order strings for coffees
     List<String> Others = new ArrayList<>();          //list used for order string for 'others
+
 
 
     @Override
@@ -40,8 +41,8 @@ public class viewOrders extends ActionBarActivity {
             readIn();       //runs in the read in sub-routine
             addingToExpanded();         //runs the subroutine to add the details to the expanded view list
 
-            expandableListAdapter = new expandedListView(listHeaders, listItems, this);
-            eLV.setAdapter(expandableListAdapter);
+            eLa = new expandedListView(listHeaders, listItems, this);
+            eLV.setAdapter(eLa);
         } catch (Exception ex) {
             Log.d("dropdown error", ex.getMessage());
         }
@@ -92,9 +93,9 @@ public class viewOrders extends ActionBarActivity {
                 } else {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0].contains("Tea")) {                   //if it is a tea order
-                        Teas.add(fullOrder.toString());                        //adds the formatted string order to the list
+                        Teas.add(fullOrder);                        //adds the formatted string order to the list
                     } else if (orderDetails[0].contains("Coffee")) {       //if it is a coffee order
-                        Coffees.add(fullOrder.toString());                     //adds the formatted string order to the list
+                        Coffees.add(fullOrder);                     //adds the formatted string order to the list
                     } else {        //if it is a 'other' order
                         Others.add(orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
                     }
