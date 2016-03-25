@@ -19,17 +19,17 @@ import java.util.List;
 
 public class viewOrders extends ActionBarActivity {
 
-    Intent previousIntent = getIntent();        //getting the intent from the previous screen
-    final String partyName = previousIntent.getExtras().getString("pN");       //setting up the party name
+    Intent previousIntent;       //getting the intent from the previous screen
+    String partyName;       //setting up the party name
 
     ExpandableListAdapter eLa;           //setting it up for the list adaptor
     ExpandableListView eLV;                      //setting up an extendable list view
-    List<String> listHeaders = new ArrayList<>();                               //list of strings for the headers
-    HashMap<String, List<String>> listItems = new HashMap<>();               //hashmap used for the items in the headers
+    List<String> listHeaders;                               //list of strings for the headers
+    HashMap<String, List<String>> listItems;               //hashmap used for the items in the headers
 
-    List<String> Teas = new ArrayList<>();            //list used for order strings for teas
-    List<String> Coffees = new ArrayList<>();         //list used for order strings for coffees
-    List<String> Others = new ArrayList<>();          //list used for order string for 'others
+    List<String> Teas;         //list used for order strings for teas
+    List<String> Coffees;         //list used for order strings for coffees
+    List<String> Others;         //list used for order string for 'others
 
 
 
@@ -38,6 +38,16 @@ public class viewOrders extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_orders);
+
+        previousIntent = getIntent();                               //getting the previous intent
+        partyName = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
+
+        listHeaders = new ArrayList<>();                            //setting up the header array list
+        listItems = new HashMap<>();                                //setting up the items array list
+
+        Teas = new ArrayList<>();                                   //setting up the teas list
+        Coffees = new ArrayList<>();                                //setting up the coffees list
+        Others = new ArrayList<>();                                 //setting up the 'others' list
 
         eLV = (ExpandableListView) findViewById(R.id.viewOrders);
 
