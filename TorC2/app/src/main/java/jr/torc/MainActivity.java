@@ -68,7 +68,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton checkedRB = (RadioButton)findViewById(checkedId);       //finding what radio button is checked
-                Toast.makeText(MainActivity.this, checkedRB.getText(), Toast.LENGTH_SHORT).show();
+                float f;
+                if(checkedRB.getText().equals("Milk")) {
+                    f = 300;
+                    mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                } else if (checkedRB.getText().equals("More Milk")) {
+                    f = 500;
+                    mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                } else if (checkedRB.getText().equals("No Milk")) {
+                    f = 0;
+                    mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
+                }
             }
         });
 

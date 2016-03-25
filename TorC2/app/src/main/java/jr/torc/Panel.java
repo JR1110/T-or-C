@@ -13,6 +13,11 @@ public class Panel extends View {
     public Panel(Context context, AttributeSet attrs) { super(context, attrs); }
     public Panel(Context context, AttributeSet attrs, int defStyle) { super(context, attrs, defStyle); }
 
+    public Panel(Context context, float f) {
+        super(context);
+        this.f = f;
+    }
+
     float f;
 
     @Override
@@ -20,7 +25,6 @@ public class Panel extends View {
     {
         Paint paint = new Paint();      //setting up a new paint
 
-        int f = 300;
 
         paint.setColor(Color.BLACK);        //setting the default colour to black
         canvas.drawRect(125, 125, 750, 800, paint);     //drawing rectangle for main body of mug
