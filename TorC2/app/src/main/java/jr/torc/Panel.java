@@ -20,16 +20,16 @@ public class Panel extends View {
     {
         Paint paint = new Paint();      //setting up a new paint
 
-        f = 300;      //value used to store amount of milk, dynamically changed by user
+        int f = 300;
 
         paint.setColor(Color.BLACK);        //setting the default colour to black
         canvas.drawRect(125, 125, 750, 800, paint);     //drawing rectangle for main body of mug
 
         paint.setColor(Color.BLACK);
-        canvas.drawRect(750, 175, 875, 700, paint);     //drawing mug handle
+        canvas.drawRect(750, 175, 875, 600, paint);     //drawing mug handle
 
         paint.setColor(Color.rgb(66,33,00));
-        canvas.drawRect(750, 250, 825, 625, paint);     //drawing the inset to the mug handle
+        canvas.drawRect(750, 250, 825, 525, paint);     //drawing the inset to the mug handle
 
         paint.setColor(Color.WHITE);
         canvas.drawRect(150, 150, 725, f, paint);       //variable height adjust based on float f

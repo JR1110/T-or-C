@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:ems="9"
-                android:layout_column="2" />
+                android:layout_column="1" />
         </TableRow>
 
         <TableRow>
@@ -67,8 +67,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Other"
                 android:id="@+id/btnOther"
-                android:layout_column="0"
-                android:layout_span="4" />
+                android:layout_column="1"
+                android:layout_span="5" />
         </TableRow>
 
         <TableRow
@@ -87,13 +87,13 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="20dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/btnMinus"
                 android:id="@+id/btnMinus"
-                android:layout_column="1"
-                android:layout_weight="0.0001"/>
+                android:layout_column="2"
+                android:ems="0"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -101,7 +101,7 @@
                 android:inputType="number"
                 android:ems="5"
                 android:id="@+id/numSugar"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAlignment="center"
                 android:gravity="center"
@@ -114,8 +114,37 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/btnPlus"
                 android:id="@+id/btnPlus"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:layout_weight="0.4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/milkGroup"
+                android:orientation="horizontal"
+                android:layout_span="5">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Milk"
+                    android:id="@+id/rbNoMilk"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Milk"
+                    android:id="@+id/rbLittleMilk"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="More Milk"
+                    android:id="@+id/rbLotsMilk" />
+            </RadioGroup>
         </TableRow>
 
     </TableLayout>
@@ -139,9 +168,9 @@
         android:layout_below="@+id/tableLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnNextOrder"
         android:id="@+id/flPanel"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_above="@+id/btnNextOrder">
     </LinearLayout>
 
     <TextView

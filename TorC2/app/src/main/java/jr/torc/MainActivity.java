@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -59,6 +61,17 @@ public class MainActivity extends ActionBarActivity {
 
         final TextView numSugar = (TextView) findViewById(R.id.numSugar);       //variable used for the sugar number
         numSugar.setText("0");          //sets the level to be 0 from the start
+
+        final RadioGroup rG = (RadioGroup) findViewById(R.id.milkGroup);          //varibale used for the radio buttons
+
+        rG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton checkedRB = (RadioButton)findViewById(checkedId);       //finding what radio button is checked
+                Toast.makeText(MainActivity.this, checkedRB.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
