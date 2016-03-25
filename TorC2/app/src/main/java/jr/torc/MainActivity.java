@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.JsonWriter;
@@ -27,6 +28,8 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -36,6 +39,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
         final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);
         final EditText txtSpecifyInput = (EditText) findViewById(R.id.txtOtherInput);

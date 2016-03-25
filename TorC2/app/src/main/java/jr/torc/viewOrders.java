@@ -91,12 +91,12 @@ public class viewOrders extends ActionBarActivity {
                     continue;                                   //skip and go onto next iteration
                 } else {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
-                    if (orderDetails[0] == "Tea") {                   //if it is a tea order
+                    if (orderDetails[0].equals("Tea")) {                   //if it is a tea order
                         Teas.add(fullOrder.toString());                        //adds the formatted string order to the list
-                    } else if (orderDetails[0] == "Coffee") {       //if it is a coffee order
+                    } else if (orderDetails[0].equals("Coffee")) {       //if it is a coffee order
                         Coffees.add(fullOrder.toString());                     //adds the formatted string order to the list
-                    } else if (orderDetails[0] == "Other") {        //if it is a 'other' order
-                        Others.add(fullOrder.toString());                      //adds the formatted string order to the list
+                    } else {        //if it is a 'other' order
+                        Others.add(orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
                     }
                 }
             }
@@ -109,7 +109,7 @@ public class viewOrders extends ActionBarActivity {
 
         if (Coffees.size() == 0)
         {
-            Coffees.add("No Teas...");      //shows the user that no coffees have been added
+            Coffees.add("No Coffees...");      //shows the user that no coffees have been added
         }
 
         if (Others.size() == 0)
