@@ -39,7 +39,7 @@ public class viewOrders2 extends ActionBarActivity {
         readIn(Teas, Coffees, Others, pN);           //runs the read in sub-routine
         fillTable(Teas, "Teas", tbl);        //runs the fill table sub routine
         fillTable(Coffees, "Coffees", tbl);      //runs the sub-routine to fill in the coffee table
-        fillTable(Others, "Others", tbl);        //runs the sub routine to fill in the oher orders
+        fillTable(Others, "Others", tbl);        //runs the sub routine to fill in the other orders
 
     }
 
@@ -72,7 +72,7 @@ public class viewOrders2 extends ActionBarActivity {
 
                 String[] orderDetails = order.split(" ");       //splitting the order into components
 
-                if (orderDetails.length > 1)                    //if there is no array based on spaces
+                if (orderDetails.length != 4 && orderDetails[0] != "Other")                    //if there is no array based on spaces
                 {
                     continue;                                   //skip and go onto next iteration
                 } else {
