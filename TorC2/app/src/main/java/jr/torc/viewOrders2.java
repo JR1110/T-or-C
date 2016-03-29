@@ -36,7 +36,9 @@ public class viewOrders2 extends ActionBarActivity {
         List<String> Others = new ArrayList<>();            //making a new list for 'others'
 
         readIn(Teas, Coffees, Others, pN);           //runs the read in sub-routine
-        fillTable(Teas, Coffees, Others, tbl);        //runs the fill table sub routine
+        fillTable(Teas, "Teas", tbl);        //runs the fill table sub routine
+        fillTable(Coffees, "Coffees", tbl);      //runs the sub-routine to fill in the coffee table
+        fillTable(Others, "Others", tbl);        //runs the sub routine to fill in the oher orders
 
     }
 
@@ -86,21 +88,20 @@ public class viewOrders2 extends ActionBarActivity {
         }
     }
 
-    private void fillTable(List<String> Teas, List<String> Coffees, List<String> Others, TableLayout tbl)
+    private void fillTable(List<String> orders, String title, TableLayout tbl)
     {
         TableRow r = new TableRow(this);        //adding a new table row
         TextView t = new TextView(this);        //adding a new textview
 
-        t.setText("Teas :");                    //setting the title teas
+        t.setText(title + " : ");                    //setting the title teas
 
         r.setBackgroundColor(Color.BLACK);      //setting the background to black
-        t.setTextColor(Color.rgb(255, 69, 0));        //setting the text colour to orange
+        t.setTextColor(Color.rgb(255, 140, 0));        //setting the text colour to orange
 
         r.addView(t);               //adding the text to the table row
-
         tbl.addView(r);             //adding the row to the table
 
-        for (String s : Teas)
+        for (String s : orders)
         {
             TableRow tR = new TableRow(this);        //adding a new table row
             TextView tV = new TextView(this);        //adding a new textview
@@ -114,6 +115,7 @@ public class viewOrders2 extends ActionBarActivity {
             tbl.addView(tR);            //adding the row to the table
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
