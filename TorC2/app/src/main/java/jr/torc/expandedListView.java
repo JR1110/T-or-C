@@ -26,6 +26,10 @@ public class expandedListView extends BaseExpandableListAdapter {
     private HashMap<String, List<String>> allOrders;      //hashmap of all orders
     private Context context;
 
+    private class ViewHolder{
+        TextView text;
+    }
+
     public expandedListView(List<String> Headings, HashMap<String, List<String>> AllOrders, Context Context)
     {
         this.headings = Headings;       //setting up headings
@@ -70,35 +74,46 @@ public class expandedListView extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headingTitle = (String) getGroup(groupPosition);
+
+        ViewHolder vH = new ViewHolder();
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inf = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-            convertView = infalInflater.inflate(R.layout.groups, null);
+            convertView = inf.inflate(R.layout.groups, parent, false);
+
+            vH.text = (TextView) convertView.findViewById(R.id.headings);
+
+            convertView.setTag(vH);
+
+        } else {
+            vH = (ViewHolder) convertView.getTag();
         }
 
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.headings);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headingTitle);
+        vH.text.setText(getGroup(groupPosition).toString());
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String) getChild(groupPosition, childPosition);
 
-        LayoutInflater inf = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        ViewHolder vH = new ViewHolder();
 
         if (convertView == null) {
 
-            convertView = inf.inflate(R.layout.items, null);
+            LayoutInflater inf = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
+            convertView = inf.inflate(R.layout.items, parent, false);
+
+            vH.text = (TextView) convertView.findViewById(R.id.list_item);
+
+            convertView.setTag(vH);
+        } else {
+            vH = (ViewHolder) convertView.getTag();
         }
 
-        TextView txtChild = (TextView) convertView.findViewById(R.id.child);
-        txtChild.setText(childText);
+        vH.text.setText(getChild(groupPosition, childPosition).toString());
 
         return convertView;
     }

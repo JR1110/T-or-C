@@ -1,85 +1,50 @@
 package jr.torc;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
-public class viewOrders extends ActionBarActivity {
-
-    Intent previousIntent;       //getting the intent from the previous screen
-    String partyName;       //setting up the party name
-
-    ExpandableListAdapter eLa;           //setting it up for the list adaptor
-    ExpandableListView eLV;                      //setting up an extendable list view
-    List<String> listHeaders;                               //list of strings for the headers
-    HashMap<String, List<String>> listItems;               //hashmap used for the items in the headers
-
-    List<String> Teas;         //list used for order strings for teas
-    List<String> Coffees;         //list used for order strings for coffees
-    List<String> Others;         //list used for order string for 'others
-
-
-
+public class viewOrders2 extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_orders);
+        setContentView(R.layout.activity_view_orders2);
 
-        previousIntent = getIntent();                               //getting the previous intent
-        partyName = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
+        Intent previousIntent = getIntent();                               //getting the previous intent
+        String pN = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
 
-        listHeaders = new ArrayList<>();                            //setting up the header array list
-        listItems = new HashMap<>();                                //setting up the items array list
+        final TableLayout tbl = (TableLayout) findViewById(R.id.tblOrder);        //getting the table to display to
 
-        Teas = new ArrayList<>();                                   //setting up the teas list
+        List<String> Teas = new ArrayList<>();              //making a new list for teas
+        List<String> Coffees = new ArrayList<>();           //making a new list for coffees
+        List<String> Others = new ArrayList<>();            //making a new list for 'others'
 
-        Coffees = new ArrayList<>();                                //setting up the coffees list
-
-        Others = new ArrayList<>();                                 //setting up the 'others' list
-
-        eLV = (ExpandableListView) findViewById(R.id.viewOrders);
-
-        try {
-            prepareHeaderData();        //runs the sub-routine fo rht headers of the drinks
-            readIn();       //runs in the read in sub-routine
-            addingToExpanded();         //runs the subroutine to add the details to the expanded view list
-
-            eLa = new expandedListView(listHeaders, listItems, this);
-            eLV.setAdapter(eLa);
-        } catch (Exception ex) {
-            Log.d("dropdown error", ex.getMessage());
-        }
-
+        readIn(Teas, Coffees, Others, pN);           //runs the read in sub-routine
+        fillTable(Teas, Coffees, Others, tbl);        //runs the fill table sub routine
 
     }
 
-    private void prepareHeaderData() {
-        listHeaders.add("Tea");         //making tea header
-        listHeaders.add("Coffee");      //making coffee header
-        listHeaders.add("Other");       //making other header
-
-
-    }
-
-
-    private void readIn() {
+    private void readIn(List<String> Teas, List<String> Coffees, List<String> Others, String pN)
+    {
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
-            File file = new File(getApplicationContext().getExternalFilesDir(null), partyName+".txt");         //oppening up the JSON file
+            File file = new File(getApplicationContext().getExternalFilesDir(null), pN + ".txt");         //oppening up the JSON file
             StringBuffer sB = new StringBuffer("");         //setting up a string buffer
             int ch;
 
@@ -92,7 +57,7 @@ public class viewOrders extends ActionBarActivity {
                 }
                 iS.close();         //closes the reader
 
-            } catch (Exception ex) {        //catches any exceptions
+            } catch (Exception ex) {
                 Log.d("Reading error :", ex.getMessage());      ///shows them as reading errors
             }
 
@@ -121,23 +86,36 @@ public class viewOrders extends ActionBarActivity {
         }
     }
 
-    private void addingToExpanded()
+    private void fillTable(List<String> Teas, List<String> Coffees, List<String> Others, TableLayout tbl)
     {
-        Teas.add("No More");                                        //adding a no more ender
-        listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
+        TableRow r = new TableRow(this);        //adding a new table row
+        TextView t = new TextView(this);        //adding a new textview
 
-        Coffees.add("No More");                                     //adding a no more ender to the list
-        listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
+        t.setText("Teas :");                    //setting the title teas
 
-        Others.add("No More");                                      //adding a no more ender to the list
-        listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
+        r.setBackgroundColor(Color.BLACK);      //setting the background to black
+        t.setTextColor(Color.argb(00, 255, 69, 0));        //setting the text colour to orange
 
+        tbl.addView(r);
+
+        for (String s : Teas)
+        {
+            TableRow tR = new TableRow(this);        //adding a new table row
+            TextView tV = new TextView(this);        //adding a new textview
+
+            tV.setText(s);                    //setting the order as the text
+
+            tR.setBackgroundColor(Color.WHITE);      //setting the background to white
+            tV.setTextColor(Color.argb(00,00,00,00));        //setting the text colour to orange
+
+            tbl.addView(tR);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_orders, menu);
+        getMenuInflater().inflate(R.menu.menu_view_orders2, menu);
         return true;
     }
 

@@ -14,6 +14,7 @@
     <string name="title_activity_party_name">Party Name</string>
     <string name="txtWelcome">Welcome!\nEnter your event name :</string>
     <string name="btnStart">Get Started</string>
+    <string name="title_activity_view_orders2">viewOrders2</string>
 
 
 </resources>

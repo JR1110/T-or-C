@@ -236,6 +236,7 @@ public class MainActivity extends ActionBarActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnNext.callOnClick();      //runs the on click for next to add the final drink
                 Intent in = new Intent(MainActivity.this, viewOrders.class);        //setting up the intent to change the activities
                 in.putExtra("pN", partyName.toString());        //adding the party name to the intent
                 startActivity(in);      //starts the intent activity
