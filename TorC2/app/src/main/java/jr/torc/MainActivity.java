@@ -191,6 +191,10 @@ public class MainActivity extends ActionBarActivity {
                     }
                     int sugar = Integer.parseInt(numSugar.getText().toString());      //converts the sugar textbox into a number
                     o.setSugar(sugar);      //sets the sugar level as such
+                    if (o.getMilkLevel().equals(null))      //if there is no set milk level
+                    {
+                        o.setMilkLevel("Milk");         //set it to milk as default
+                    }
 
                     txtWriter();       //runs the JSON writer
 

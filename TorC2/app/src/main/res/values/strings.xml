@@ -16,7 +16,7 @@
     <string name="btnStart">Get Started</string>
     <string name="title_activity_view_orders2">viewOrders2</string>
     <string name="btnBackToOrders">Add More Orders</string>
-    <string name="btnFinished">Finish (Removes Details)</string>
+    <string name="btnFinished">Finish (Removes Orders)</string>
 
 
 </resources>
