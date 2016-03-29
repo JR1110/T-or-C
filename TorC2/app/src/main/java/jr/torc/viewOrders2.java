@@ -3,6 +3,7 @@ package jr.torc;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -97,16 +98,17 @@ public class viewOrders2 extends ActionBarActivity {
 
         r.setBackgroundColor(Color.BLACK);      //setting the background to black
         t.setTextColor(Color.rgb(255, 140, 0));        //setting the text colour to orange
+        t.setTypeface(null, Typeface.BOLD);      //making the font bold
 
         r.addView(t);               //adding the text to the table row
         tbl.addView(r);             //adding the row to the table
 
-        for (String s : orders)
+        for (int i = 0; i < orders.size(); i++ )
         {
             TableRow tR = new TableRow(this);        //adding a new table row
             TextView tV = new TextView(this);        //adding a new textview
 
-            tV.setText(s);                    //setting the order as the text
+            tV.setText(orders.get(i).toString());                    //setting the order as the text
 
             tR.setBackgroundColor(Color.WHITE);      //setting the background to white
             tV.setTextColor(Color.BLACK);        //setting the text colour to black
