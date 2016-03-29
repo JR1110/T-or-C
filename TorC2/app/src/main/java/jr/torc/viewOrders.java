@@ -46,7 +46,9 @@ public class viewOrders extends ActionBarActivity {
         listItems = new HashMap<>();                                //setting up the items array list
 
         Teas = new ArrayList<>();                                   //setting up the teas list
+
         Coffees = new ArrayList<>();                                //setting up the coffees list
+
         Others = new ArrayList<>();                                 //setting up the 'others' list
 
         eLV = (ExpandableListView) findViewById(R.id.viewOrders);
@@ -109,8 +111,8 @@ public class viewOrders extends ActionBarActivity {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0].contains("Tea")) {                   //if it is a tea order
                         Teas.add(fullOrder);                        //adds the formatted string order to the list
-                    } else if (orderDetails[0].contains("Coffee")) {       //if it is a coffee order
-                        Coffees.add(fullOrder);                     //adds the formatted string order to the list
+                    } else if (orderDetails[0].contains("Coffee")) {        //if it is a coffee order
+                        Coffees.add(fullOrder);                          //adds the formatted string order to the list
                     } else {        //if it is a 'other' order
                         Others.add(orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
                     }
@@ -121,29 +123,14 @@ public class viewOrders extends ActionBarActivity {
 
     private void addingToExpanded()
     {
-        if (Teas.size() == 0)
-        {
-            Teas.add("No Teas...");         //shows the user that no teas have been added
-            listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
-        } else {
-            listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
-        }
+        Teas.add("No More");                                        //adding a no more ender
+        listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
 
-        if (Coffees.size() == 0)
-        {
-            Coffees.add("No Coffees...");      //shows the user that no coffees have been added
-            listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
-        } else {
-            listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
-        }
+        Coffees.add("No More");                                     //adding a no more ender to the list
+        listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
 
-        if (Others.size() == 0)
-        {
-            Others.add("No Others...");       //shows the user no 'others' have been added
-            listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
-        } else {
-            listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
-        }
+        Others.add("No More");                                      //adding a no more ender to the list
+        listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
 
     }
 
