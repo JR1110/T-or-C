@@ -29,7 +29,7 @@ public class viewOrders2 extends ActionBarActivity {
         Intent previousIntent = getIntent();                               //getting the previous intent
         String pN = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
 
-        final TableLayout tbl = (TableLayout) findViewById(R.id.tblOrder);        //getting the table to display to
+        TableLayout tbl = (TableLayout) findViewById(R.id.tblOrder);        //getting the table to display to
 
         List<String> Teas = new ArrayList<>();              //making a new list for teas
         List<String> Coffees = new ArrayList<>();           //making a new list for coffees
@@ -94,9 +94,11 @@ public class viewOrders2 extends ActionBarActivity {
         t.setText("Teas :");                    //setting the title teas
 
         r.setBackgroundColor(Color.BLACK);      //setting the background to black
-        t.setTextColor(Color.argb(00, 255, 69, 0));        //setting the text colour to orange
+        t.setTextColor(Color.rgb(255, 69, 0));        //setting the text colour to orange
 
-        tbl.addView(r);
+        r.addView(t);               //adding the text to the table row
+
+        tbl.addView(r);             //adding the row to the table
 
         for (String s : Teas)
         {
@@ -106,9 +108,10 @@ public class viewOrders2 extends ActionBarActivity {
             tV.setText(s);                    //setting the order as the text
 
             tR.setBackgroundColor(Color.WHITE);      //setting the background to white
-            tV.setTextColor(Color.argb(00,00,00,00));        //setting the text colour to orange
+            tV.setTextColor(Color.BLACK);        //setting the text colour to black
 
-            tbl.addView(tR);
+            tR.addView(tV);             //adding the textview to the row
+            tbl.addView(tR);            //adding the row to the table
         }
     }
 
