@@ -24,14 +24,9 @@ public class viewOrders extends ActionBarActivity {
 
     ExpandableListAdapter eLa;           //setting it up for the list adaptor
     ExpandableListView eLV;                      //setting up an extendable list view
-    List<String> listHeaders;                               //list of strings for the headers
-    HashMap<String, List<String>> listItems;               //hashmap used for the items in the headers
 
-    List<String> Teas;         //list used for order strings for teas
-    List<String> Coffees;         //list used for order strings for coffees
-    List<String> Others;         //list used for order string for 'others
-
-
+    private String[] drinks;            //string array for the group headers
+    private String [][] orders = new String [3][100];        //string 2D array for the orders
 
 
     @Override
@@ -42,23 +37,13 @@ public class viewOrders extends ActionBarActivity {
         previousIntent = getIntent();                               //getting the previous intent
         partyName = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
 
-        listHeaders = new ArrayList<>();                            //setting up the header array list
-        listItems = new HashMap<>();                                //setting up the items array list
-
-        Teas = new ArrayList<>();                                   //setting up the teas list
-
-        Coffees = new ArrayList<>();                                //setting up the coffees list
-
-        Others = new ArrayList<>();                                 //setting up the 'others' list
-
         eLV = (ExpandableListView) findViewById(R.id.viewOrders);
 
         try {
             prepareHeaderData();        //runs the sub-routine fo rht headers of the drinks
             readIn();       //runs in the read in sub-routine
-            addingToExpanded();         //runs the subroutine to add the details to the expanded view list
 
-            eLa = new expandedListView(listHeaders, listItems, this);
+            eLa = new expandedListView(drinks, orders, this);
             eLV.setAdapter(eLa);
         } catch (Exception ex) {
             Log.d("dropdown error", ex.getMessage());
@@ -68,11 +53,7 @@ public class viewOrders extends ActionBarActivity {
     }
 
     private void prepareHeaderData() {
-        listHeaders.add("Tea");         //making tea header
-        listHeaders.add("Coffee");      //making coffee header
-        listHeaders.add("Other");       //making other header
-
-
+        drinks = new String [] {"Tea", "Coffee", "Other"};            //adding the drink totals to the order
     }
 
 
@@ -110,29 +91,17 @@ public class viewOrders extends ActionBarActivity {
                 } else {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0].contains("Tea")) {                   //if it is a tea order
-                        Teas.add(fullOrder);                        //adds the formatted string order to the list
+                        orders[0][0] = fullOrder;                        //adds the formatted string order to the list
                     } else if (orderDetails[0].contains("Coffee")) {        //if it is a coffee order
-                        Coffees.add(fullOrder);                          //adds the formatted string order to the list
+                        orders[1][0] = fullOrder;                          //adds the formatted string order to the list
                     } else {        //if it is a 'other' order
-                        Others.add(orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
+                        orders[2][0] = (orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
                     }
                 }
             }
         }
     }
 
-    private void addingToExpanded()
-    {
-        Teas.add("No More");                                        //adding a no more ender
-        listItems.put(listHeaders.get(0), Teas);            //adds the tea orders to the expand4ed list view
-
-        Coffees.add("No More");                                     //adding a no more ender to the list
-        listItems.put(listHeaders.get(1), Coffees);         //adds the coffee beverages to the expanded list view dropdown
-
-        Others.add("No More");                                      //adding a no more ender to the list
-        listItems.put(listHeaders.get(2), Others);          //adds the other (annoying peoples) orders to the expanded list view
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

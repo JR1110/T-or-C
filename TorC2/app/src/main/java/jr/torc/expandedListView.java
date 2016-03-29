@@ -109,7 +109,7 @@ public class expandedListView extends BaseExpandableListAdapter {
         }
 
         h.text.setText(getChild(groupPosition, childPosition).toString());
-        
+
         return convertView;
     }
 
