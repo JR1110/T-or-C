@@ -72,7 +72,7 @@ public class viewOrders2 extends ActionBarActivity {
 
                 String[] orderDetails = order.split(" ");       //splitting the order into components
 
-                if (orderDetails.length != 4)                    //if there is no array based on spaces
+                if (orderDetails.length > 1)                    //if there is no array based on spaces
                 {
                     continue;                                   //skip and go onto next iteration
                 } else {
@@ -103,15 +103,16 @@ public class viewOrders2 extends ActionBarActivity {
         r.addView(t);               //adding the text to the table row
         tbl.addView(r);             //adding the row to the table
 
-        for (int i = 0; i < orders.size(); i++ )
+        for (String s : orders)
         {
             TableRow tR = new TableRow(this);        //adding a new table row
             TextView tV = new TextView(this);        //adding a new textview
 
-            tV.setText(orders.get(i).toString());                    //setting the order as the text
+            tV.setText(s);                    //setting the order as the text
 
             tR.setBackgroundColor(Color.WHITE);      //setting the background to white
             tV.setTextColor(Color.BLACK);        //setting the text colour to black
+            t.setTypeface(null, Typeface.NORMAL);       //resetting the text back to normal
 
             tR.addView(tV);             //adding the textview to the row
             tbl.addView(tR);            //adding the row to the table
