@@ -18,5 +18,7 @@
     <string name="btnBackToOrders">Add More Orders</string>
     <string name="btnFinished">Finish (Removes Orders)</string>
 
+    <string name ="sure">Are you sure? (this will delete the event\'s orders)</string>
+
 
 </resources>

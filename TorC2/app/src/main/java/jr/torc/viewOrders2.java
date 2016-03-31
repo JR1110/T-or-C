@@ -50,14 +50,26 @@ public class viewOrders2 extends ActionBarActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delete(pN);         //runs the delete programme
+                AlertDialog.Builder aDB = new AlertDialog.Builder(viewOrders2.this);        //setting up a new alert box
+                aDB.setMessage(R.string.sure)       //asking the user if they're sure
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {       //if they click yes
+                            public void onClick(DialogInterface dialog, int which) {
+                                delete(pN);         //runs the delete programme
 
-                Intent intent = new Intent(viewOrders2.this, partyName.class);      //builds the intent to go back to the 'home page'
-                startActivity(intent);      //goes back to the homepage
+                                Intent intent = new Intent(viewOrders2.this, partyName.class);      //builds the intent to go back to the 'home page'
+                                startActivity(intent);      //goes back to the homepage
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {        //if they click no - does nothing
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+
             }
         });
-
-    }
+            }
 
     private void readIn(List<String> Teas, List<String> Coffees, List<String> Others, String pN)
     {
