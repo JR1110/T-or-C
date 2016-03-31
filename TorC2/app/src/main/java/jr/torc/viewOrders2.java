@@ -72,7 +72,7 @@ public class viewOrders2 extends ActionBarActivity {
             {
                 String order = split[i].toString();             //flatten out the individual order
 
-                String[] orderDetails = order.split(" ");       //splitting the order into components
+                String[] orderDetails = order.split(",");       //splitting the order into components
 
                 if (orderDetails.length != 4 && orderDetails[0] != "Other")                    //if there is no array based on spaces
                 {
@@ -80,11 +80,11 @@ public class viewOrders2 extends ActionBarActivity {
                 } else {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0].contains("Tea")) {                   //if it is a tea order
-                        Teas.add(0, fullOrder);                        //adds the formatted string order to the list
+                        Teas.add(fullOrder);                        //adds the formatted string order to the list
                     } else if (orderDetails[0].contains("Coffee")) {        //if it is a coffee order
-                        Coffees.add(0, fullOrder);                          //adds the formatted string order to the list
+                        Coffees.add(fullOrder);                          //adds the formatted string order to the list
                     } else {        //if it is a 'other' order
-                        Others.add(0, orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
+                        Others.add(orderDetails[1] + " - " + orderDetails[0]);                      //adds the formatted string order to the list
                     }
                 }
             }

@@ -215,7 +215,7 @@ public class MainActivity extends ActionBarActivity {
                         File file = new File(getApplicationContext().getExternalFilesDir(null), partyName+".txt");     //opening up a new file
                         PrintWriter printOut = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));         //creates a new printwriter
 
-                        printOut.println(o.getDrink().toString() + " " + o.getName().toString() + " " + o.getMilkLevel() + " " + o.getSugar() + ";");         //prints the info the the printer
+                        printOut.println(o.getDrink().toString() + "," + o.getName().toString() + "," + o.getMilkLevel() + "," + o.getSugar() + ";");         //prints the info the the printer
 
                         printOut.close();       //closes the output printer
                     } catch (Exception ex) {
