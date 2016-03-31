@@ -175,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v){
                 try {
-                    if (name.getText() == null) {
+                    if (name.getText().equals("")) {
                         Toast needName = Toast.makeText(MainActivity.this, "Name needed", Toast.LENGTH_SHORT);       //creating toast to prompt user they need to add their name
                         needName.show();
                         throw new IllegalArgumentException("no name");
@@ -240,7 +240,9 @@ public class MainActivity extends ActionBarActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 btnNext.callOnClick();      //runs the on click for next to add the final drink
+
                 Intent in = new Intent(MainActivity.this, viewOrders2.class);        //setting up the intent to change the activities
                 in.putExtra("pN", partyName.toString());        //adding the party name to the intent
                 startActivity(in);      //starts the intent activity
