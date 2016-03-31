@@ -1,6 +1,8 @@
 package jr.torc;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -30,7 +32,7 @@ public class viewOrders2 extends ActionBarActivity {
         setContentView(R.layout.activity_view_orders2);
 
         Intent previousIntent = getIntent();                               //getting the previous intent
-        String pN = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
+        final String pN = previousIntent.getExtras().getString("pN");     //getting the file string from said intent
 
         TableLayout tbl = (TableLayout) findViewById(R.id.tblOrder);        //getting the table to display to
 
@@ -43,13 +45,25 @@ public class viewOrders2 extends ActionBarActivity {
         fillTable(Coffees, "Coffees", tbl);      //runs the sub-routine to fill in the coffee table
         fillTable(Others, "Others", tbl);        //runs the sub routine to fill in the other orders
 
+        final Button btnFinish = (Button) findViewById(R.id.btnFinished);         //finding the finished button
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete(pN);         //runs the delete programme
+
+                Intent intent = new Intent(viewOrders2.this, partyName.class);      //builds the intent to go back to the 'home page'
+                startActivity(intent);      //goes back to the homepage
+            }
+        });
+
     }
 
     private void readIn(List<String> Teas, List<String> Coffees, List<String> Others, String pN)
     {
         String state = Environment.getExternalStorageState();       //getting the storage state
         if (Environment.MEDIA_MOUNTED.equals(state)) {              //if there is external storage
-            File file = new File(getApplicationContext().getExternalFilesDir(null), pN + ".txt");         //oppening up the JSON file
+            File file = new File(getApplicationContext().getExternalFilesDir(null), pN + ".txt");         //oppening up the file
             StringBuffer sB = new StringBuffer("");         //setting up a string buffer
             int ch;
 
@@ -77,6 +91,8 @@ public class viewOrders2 extends ActionBarActivity {
                 if (orderDetails.length != 4 && orderDetails[0] != "Other")                    //if there is no array based on spaces
                 {
                     continue;                                   //skip and go onto next iteration
+                } else if (orderDetails[1].equals("")) {        //if there is no name on the order it will be skipped
+                    continue;       //skip and go onto the next iterations
                 } else {
                     String fullOrder = orderDetails[1] + " - " + " " + orderDetails[2] + " with " + orderDetails[3] + " sugars";
                     if (orderDetails[0].contains("Tea")) {                   //if it is a tea order
@@ -121,6 +137,10 @@ public class viewOrders2 extends ActionBarActivity {
         }
     }
 
+    private void delete(String pN){
+        File file = new File(getApplicationContext().getExternalFilesDir(null), pN + ".txt");         //oppening up the file
+        file.delete();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
