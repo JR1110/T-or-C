@@ -45,9 +45,9 @@ public class MainActivity extends ActionBarActivity {
         Intent previousIntent = getIntent();        //getting the intent from the previous screen
         final String partyName = previousIntent.getExtras().getString("pN");       //setting up the party name
 
-        final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);
-        final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);
-        final EditText txtSpecifyInput = (EditText) findViewById(R.id.txtOtherInput);
+        final LinearLayout mug = (LinearLayout) findViewById(R.id.flPanel);         //getting the linear layout for the mug image to go in
+        final TextView txtSpecify = (TextView) findViewById(R.id.txtSpecify);       //getting the text showing the options for other drinks
+        final EditText txtSpecifyInput = (EditText) findViewById(R.id.txtOtherInput);       //getting the textbox used for inputting the other drink
 
         mug.addView(new Panel(this), 0);      //adding the panel view to the linear layout flPanel
 
@@ -73,19 +73,19 @@ public class MainActivity extends ActionBarActivity {
                 RadioButton checkedRB = (RadioButton)findViewById(checkedId);       //finding what radio button is checked
                 float f;
                 if(checkedRB.getText().equals("Milk")) {
-                    f = 300;
+                    f = 300;                                                //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("Milk");                                 //adding milk level to the order
                 } else if (checkedRB.getText().equals("More")) {
-                    f = 400;
+                    f = 400;                                                //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("Lots of milk!");                        //adding milk level to th order
                 } else if (checkedRB.getText().equals("No Milk")) {
-                    f = 0;
+                    f = 0;                                                  //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("No Milk");                              //adding the milk level to the order
                 } else if(checkedRB.getText().equals("Less")) {
-                    f = 200;
+                    f = 200;                                                //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("A little milk");                        //adding the milk level to the order
                 }
@@ -177,7 +177,7 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     if (name.getText().equals("")) {
                         Toast needName = Toast.makeText(MainActivity.this, "Name needed", Toast.LENGTH_SHORT);       //creating toast to prompt user they need to add their name
-                        needName.show();
+                        needName.show();        //showing the toast
                         throw new IllegalArgumentException("no name");
                     } else {
                         o.setName(name.getText().toString());
@@ -198,8 +198,8 @@ public class MainActivity extends ActionBarActivity {
 
                     txtWriter();       //runs the JSON writer
 
-                    Toast success = Toast.makeText(MainActivity.this, "Drink added", Toast.LENGTH_SHORT);
-                    success.show();
+                    Toast success = Toast.makeText(MainActivity.this, "Drink added", Toast.LENGTH_SHORT);       //toast to show the drink was added successfully
+                    success.show();         //showing the toast
 
                     reset();        //runs the reset subroutine
                 }
@@ -209,7 +209,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             public void txtWriter(){
-                String state = Environment.getExternalStorageState();
+                String state = Environment.getExternalStorageState();       //getting the state to see if there is external storage
                 if (Environment.MEDIA_MOUNTED.equals(state)) {
                     try {
                         File file = new File(getApplicationContext().getExternalFilesDir(null), partyName+".txt");     //opening up a new file

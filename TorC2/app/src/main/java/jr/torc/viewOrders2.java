@@ -112,6 +112,7 @@ public class viewOrders2 extends ActionBarActivity {
                     } else if (orderDetails[0].contains("Coffee")) {        //if it is a coffee order
                         Coffees.add(fullOrder);                          //adds the formatted string order to the list
                     } else {        //if it is a 'other' order
+                        orderDetails[0] = orderDetails[0].replace("\n", "");        //replaces the initial \n to an empty string
                         Others.add(orderDetails[1] + " - " + orderDetails[0] + " ");                      //adds the formatted string order to the list
                     }
                 }
