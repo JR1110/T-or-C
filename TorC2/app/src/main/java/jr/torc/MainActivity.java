@@ -80,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
                     f = 400;                                                //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("Lots of milk!");                        //adding milk level to th order
-                } else if (checkedRB.getText().equals("No Milk")) {
+                } else if (checkedRB.getText().equals("None")) {
                     f = 0;                                                  //setting the f level for the panel
                     mug.addView(new Panel(MainActivity.this, f), 0);      //adding the panel view to the linear layout flPanel
                     o.setMilkLevel("No Milk");                              //adding the milk level to the order

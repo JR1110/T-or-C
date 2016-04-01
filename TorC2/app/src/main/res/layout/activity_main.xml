@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:ems="9"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_weight="0.25" />
         </TableRow>
 
         <TableRow>
@@ -44,10 +45,9 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Tea"
             android:id="@+id/btnTea"
-            android:layout_weight="0.47"
             android:gravity="center_vertical"
             android:layout_column="0"
-            android:layout_span="1"/>
+            android:layout_weight="0.25" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -55,9 +55,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Coffee"
                 android:id="@+id/btnCoffee"
-                android:layout_weight="0.47"
                 android:gravity="center_vertical"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_span="4"/>
         </TableRow>
         <TableRow>
 
@@ -67,8 +67,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Other"
                 android:id="@+id/btnOther"
-                android:layout_column="1"
-                android:layout_span="5" />
+                android:layout_column="0"
+                android:layout_weight=".25" />
         </TableRow>
 
         <TableRow
@@ -77,23 +77,24 @@
             android:weightSum="1.0">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/txtSugar"
                 android:id="@+id/txtSugar"
                 android:layout_column="0"
-                />
+                android:layout_weight="0.25" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/btnMinus"
                 android:id="@+id/btnMinus"
-                android:layout_column="2"
-                android:ems="0"/>
+                android:layout_column="1"
+                android:layout_span="1"
+                android:layout_weight="0.25" />
 
             <TextView
                 android:layout_width="0dp"
@@ -105,7 +106,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:layout_weight="0.4"/>
+                android:layout_weight="0.25"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -115,40 +116,44 @@
                 android:text="@string/btnPlus"
                 android:id="@+id/btnPlus"
                 android:layout_column="1"
-                android:layout_weight="0.4"/>
+                android:layout_weight="0.25"/>
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <RadioGroup
                 android:id="@+id/milkGroup"
                 android:orientation="horizontal"
-                android:layout_span="5">
+                android:layout_width="match_parent"
+                android:layout_column="0"
+                android:layout_span="6">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No Milk"
-                    android:id="@+id/rbNoMilk"/>
+                    android:text="None"
+                    android:id="@+id/rbNoMilk" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Less"
-                    android:id="@+id/rbLittleMilk"/>
+                    android:id="@+id/rbLittleMilk" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Milk"
-                    android:id="@+id/rbMilk"/>
+                    android:id="@+id/rbMilk" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="More"
-                    android:id="@+id/rbLotsMilk" />
+                    android:id="@+id/rbLotsMilk"/>
+
             </RadioGroup>
+
         </TableRow>
 
     </TableLayout>
